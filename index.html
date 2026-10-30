@@ -10,6 +10,7 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/833/833472.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -24,30 +25,58 @@
             background-color: #0b0b12;
         }
 
-        /* Foto de fondo optimizada para fotos verticales */
-        .bg-image-blur {
+        /* Grid de 3 fotos de fondo */
+        .bg-collage-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('image_2.jpeg');
-            background-size: contain; /* Muestra la foto completa centrada */
-            background-repeat: no-repeat;
-            background-position: center;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0;
             z-index: -2;
         }
 
-        /* Capa con opacidad ligera para ver la foto con claridad sin perder legibilidad */
+        .bg-collage-item {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .bg-img-left {
+            background-image: url('image_1.jpeg');
+        }
+
+        .bg-img-center {
+            background-image: url('image_2.jpeg');
+        }
+
+        .bg-img-right {
+            background-image: url('image_3.jpeg');
+        }
+
+        /* En pantallas pequeñas de móvil muestra solo la foto principal centrada */
+        @media (max-width: 768px) {
+            .bg-collage-container {
+                grid-template-columns: 1fr;
+            }
+            .bg-img-left, .bg-img-right {
+                display: none;
+            }
+        }
+
+        /* Capa con opacidad para que resalte el texto */
         .bg-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(8, 8, 14, 0.45);
-            backdrop-filter: blur(1px);
-            -webkit-backdrop-filter: blur(1px);
+            background: rgba(8, 8, 14, 0.55);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
             z-index: -1;
         }
 
@@ -121,8 +150,12 @@
 </head>
 <body class="min-h-screen relative flex flex-col justify-between selection:bg-rose-500 selection:text-white">
 
-    <!-- Capas de Fondo Personalizado con la Imagen -->
-    <div class="bg-image-blur"></div>
+    <!-- Capa de Fondo en Collage de 3 Fotos -->
+    <div class="bg-collage-container">
+        <div class="bg-collage-item bg-img-left"></div>
+        <div class="bg-collage-item bg-img-center"></div>
+        <div class="bg-collage-item bg-img-right"></div>
+    </div>
     <div class="bg-overlay"></div>
 
     <!-- Floating Background Particles Canvas -->
