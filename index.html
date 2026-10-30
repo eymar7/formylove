@@ -10,7 +10,6 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/833/833472.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -57,7 +56,6 @@
             background-image: url('image_3.jpeg');
         }
 
-        /* En pantallas pequeñas de móvil muestra solo la foto principal centrada */
         @media (max-width: 768px) {
             .bg-collage-container {
                 grid-template-columns: 1fr;
@@ -67,7 +65,6 @@
             }
         }
 
-        /* Capa con opacidad para que resalte el texto */
         .bg-overlay {
             position: fixed;
             top: 0;
@@ -84,7 +81,6 @@
             font-family: 'Dancing Script', cursive;
         }
 
-        /* Ambient Glow Backgrounds */
         .bg-glow-1 {
             background: radial-gradient(circle, rgba(255, 117, 151, 0.12) 0%, rgba(15, 15, 24, 0) 70%);
         }
@@ -92,7 +88,6 @@
             background: radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, rgba(15, 15, 24, 0) 70%);
         }
 
-        /* Glassmorphic Cards */
         .glass-card {
             background: rgba(18, 18, 29, 0.75);
             backdrop-filter: blur(18px);
@@ -106,7 +101,6 @@
             box-shadow: 0 10px 40px -10px rgba(255, 117, 151, 0.25);
         }
 
-        /* Envelope Flap Animation Simulation */
         .envelope-icon {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
@@ -115,7 +109,6 @@
             color: #ff7597;
         }
 
-        /* Canvas Particle Styling */
         #hearts-canvas {
             position: fixed;
             top: 0;
@@ -126,7 +119,6 @@
             z-index: 1;
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -141,7 +133,6 @@
             background: #ff7597;
         }
 
-        /* Custom Modal Backdrop Blur */
         .modal-backdrop {
             background: rgba(8, 8, 14, 0.85);
             backdrop-filter: blur(14px);
@@ -208,16 +199,14 @@
 
     <!-- ==================== MODALS ==================== -->
 
-    <!-- 1. LETTER VIEWER MODAL (AMPLIADO) -->
+    <!-- 1. LETTER VIEWER MODAL -->
     <div id="letterModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6 modal-backdrop">
         <div class="glass-card max-w-2xl w-full rounded-2xl p-6 sm:p-8 relative border border-white/10 shadow-2xl max-h-[85vh] transform transition-all scale-95 opacity-0 duration-300 flex flex-col justify-between" id="letterModalCard">
             
-            <!-- Modal Close Button -->
             <button onclick="closeLetterModal()" class="absolute top-5 right-5 text-gray-400 hover:text-white w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition z-10">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
 
-            <!-- Letter Content Wrapper -->
             <div class="space-y-6 flex-1 flex flex-col min-h-0">
                 <div class="flex items-center gap-3 pr-8 flex-shrink-0">
                     <div id="modalCategoryBadge" class="p-3 rounded-xl bg-rose-500/20 text-rose-400 border border-rose-500/30 flex-shrink-0">
@@ -229,12 +218,10 @@
                 </div>
 
                 <div class="border-t border-white/10 pt-4 flex-1 flex flex-col min-h-0">
-                    <!-- Image Display if Available -->
                     <div id="modalImageContainer" class="hidden mb-4 rounded-xl overflow-hidden max-h-56 border border-white/10 flex-shrink-0">
                         <img id="modalImage" src="" alt="Imagen de amor" class="w-full h-full object-cover">
                     </div>
 
-                    <!-- Scrollable Text Area -->
                     <div class="overflow-y-auto pr-2 max-h-[60vh] flex-1">
                         <p id="modalContent" class="text-gray-200 text-base sm:text-lg leading-relaxed whitespace-pre-line font-light">
                             Contenido de la carta...
@@ -242,7 +229,6 @@
                     </div>
                 </div>
 
-                <!-- Footer / Spotify Link or Song Recommendation -->
                 <div id="modalMusicBox" class="bg-white/5 p-4 rounded-xl border border-white/5 flex items-center justify-between gap-3 flex-shrink-0">
                     <div class="flex items-center gap-3 min-w-0">
                         <i class="fa-brands fa-spotify text-emerald-400 text-2xl flex-shrink-0"></i>
@@ -289,7 +275,7 @@
 
                 <div class="pt-2 flex justify-end gap-3">
                     <button type="button" onclick="closeCustomLetterModal()" class="px-4 py-2 text-xs text-gray-400 hover:text-white">Cancelar</button>
-                    <button type="submit" class="px-5 py-2 bg-gradient-to-r from-rose-500 to-purple-600 hover:from-rose-600 hover:to-purple-700 text-white text-xs font-medium rounded-xl transition">
+                    <button type="submit" id="saveSubmitBtn" class="px-5 py-2 bg-gradient-to-r from-rose-500 to-purple-600 hover:from-rose-600 hover:to-purple-700 text-white text-xs font-medium rounded-xl transition">
                         Guardar Carta
                     </button>
                 </div>
@@ -305,7 +291,7 @@
             </div>
             <h3 class="text-lg font-bold text-white mb-2">¿Eliminar esta carta?</h3>
             <p class="text-xs text-gray-400 mb-6 leading-relaxed">
-                ¿Estás seguro de que deseas eliminar esta carta? Esta acción no se puede deshacer.
+                ¿Estás seguro de que deseas eliminar esta carta? Esta acción se aplicará en todos los dispositivos.
             </p>
             <div class="flex justify-center gap-3">
                 <button onclick="closeDeleteConfirmModal()" class="px-4 py-2 text-xs font-medium text-gray-300 hover:text-white bg-white/5 hover:bg-white/10 rounded-xl transition">
@@ -318,45 +304,98 @@
         </div>
     </div>
 
-    <!-- Hidden Background Audio for Ambient Music -->
-    <audio id="bgAudio" loop preload="none">
-        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
-    </audio>
+    <!-- ==================== FIREBASE FIRESTORE INTEGRATION ==================== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+        import { getFirestore, collection, onSnapshot, addDoc, doc, updateDoc, deleteDoc, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
-    <!-- ==================== JAVASCRIPT LOGIC ==================== -->
-    <script>
-        // -------------------------------------------------------------
-        // 1. DEFAULT LETTERS DATA (Pre-filled romantic letters)
-        // -------------------------------------------------------------
-        const defaultLetters = [
-            {
-                id: 1,
-                title: "Sabes lo mucho que te amo? ❤️",
-                icon: "fa-heart",
-                content: "Amor de mi vida,\n\nA veces las palabras se me quedan cortas para decirte todo lo que me haces sentir. Llegaste a mi vida a iluminarlo todo, a enseñarme lo que es el amor bonito y sincero.\nMe enamoro de tu risa, de tu forma de ser, de tus ojos y de la paz que me das cuando estoy a tu lado. No tienes idea de cuanto te amo, pero me encanta amarte, eres el amor de mi vida.\nCreeme que nunca habia amado a una persona así como te ahora ahora, no se que me hiciste que te metiste en el fondo de mi corazón, todo el tiempo pienso en ti, siempre estas metida en mi cabeza, me fascinas.\nAcsa, estoy loco de amor por ti, me tienes full enamorado, me tienes haciendo cosas que nunca había hecho o que nunca creí hacer, pero es que simplemente todo me sale del corazón, de este corazón que esta loco por ti.\nEres mi vida entera, yo solo quiero seguir estando contigo mucho tiempo, y que todo sea como lo ha sido desde el principio, siempre con las ganas de vernos, de besarnos, de abrazarnos, etcetera, te amo muchisimo.\nCada día que pasa y que te veo me gustas más y más me enamoro de ti, soy la persona más feliz de haberte conocido, me encanta estar contigo, no me basta con verte 5 días a la semana, quisiera verte y estar contigo todo el tiempo, toda la semana, las 24hrs del día, simplemente te amo, me encantas.\nTE AMO MI AMOR, MUCHISISISIMO.",
-            }
-        ];
+        // Firebase config reombouva'ekue
+        const firebaseConfig = {
+            apiKey: "AIzaSyD3PSoO9zWb_PzIsS4-7CX5GFZSnf1E5r0",
+            authDomain: "formylove-b462f.firebaseapp.com",
+            projectId: "formylove-b462f",
+            storageBucket: "formylove-b462f.firebasestorage.app",
+            messagingSenderId: "608923451431",
+            appId: "1:608923451431:web:690cfe6e91cd7a4dbc4e02",
+            measurementId: "G-0CPNPS0V5L"
+        };
 
-        let letters = [...defaultLetters];
-        let letterToDeleteId = null;
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const lettersCollection = collection(db, "letters");
 
-        // -------------------------------------------------------------
-        // 2. INITIALIZATION & RENDER ENVELOPES
-        // -------------------------------------------------------------
-        window.addEventListener('DOMContentLoaded', () => {
-            const saved = localStorage.getItem('love_letters_data');
-            if (saved) {
-                try { letters = JSON.parse(saved); } catch(e) {}
-            }
+        window.letters = [];
+        window.letterToDeleteId = null;
+
+        // Escuchador en Tiempo Real
+        const q = query(lettersCollection, orderBy("createdAt", "desc"));
+        onSnapshot(q, (snapshot) => {
+            window.letters = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
             renderEnvelopes();
-            initHeartsCanvas();
         });
 
+        window.saveCustomLetter = async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('saveSubmitBtn');
+            btn.disabled = true;
+            btn.innerText = "Guardando...";
+
+            const editId = document.getElementById('editLetterId').value;
+            const newTitle = document.getElementById('newTitle').value;
+            const newContent = document.getElementById('newContent').value;
+
+            try {
+                if (editId) {
+                    const docRef = doc(db, "letters", editId);
+                    await updateDoc(docRef, {
+                        title: newTitle,
+                        content: newContent
+                    });
+                } else {
+                    await addDoc(lettersCollection, {
+                        title: newTitle,
+                        content: newContent,
+                        tag: "Personalizada",
+                        icon: "fa-heart",
+                        createdAt: serverTimestamp()
+                    });
+                }
+                closeCustomLetterModal();
+            } catch (err) {
+                alert("Error al guardar la carta en Firebase: " + err.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "Guardar Carta";
+            }
+        };
+
+        window.confirmDeleteAction = async function() {
+            if (window.letterToDeleteId) {
+                try {
+                    await deleteDoc(doc(db, "letters", window.letterToDeleteId));
+                } catch (err) {
+                    alert("Error al eliminar la carta: " + err.message);
+                }
+            }
+            closeDeleteConfirmModal();
+        };
+    </script>
+
+    <!-- ==================== JAVASCRIPT UI LOGIC ==================== -->
+    <script>
         function renderEnvelopes() {
             const grid = document.getElementById('envelopeGrid');
             grid.innerHTML = '';
 
-            letters.forEach((letter) => {
+            if (window.letters.length === 0) {
+                grid.innerHTML = `<p class="text-gray-400 text-sm col-span-full text-center py-8">Cargando cartas en la nube o aún no hay cartas guardadas... 💌</p>`;
+                return;
+            }
+
+            window.letters.forEach((letter) => {
                 const card = document.createElement('div');
                 card.className = "glass-card envelope-card rounded-2xl p-6 relative cursor-pointer border border-white/5 transition-all duration-300 flex flex-col justify-between group";
                 
@@ -366,15 +405,15 @@
                             <i class="fa-solid ${letter.icon || 'fa-envelope'}"></i>
                         </div>
                         <div class="flex items-center gap-2">
-                            <button onclick="editLetter(event, ${letter.id})" class="text-gray-400 hover:text-amber-300 p-1.5 rounded-lg hover:bg-white/10 transition" title="Editar carta">
+                            <button onclick="editLetter(event, '${letter.id}')" class="text-gray-400 hover:text-amber-300 p-1.5 rounded-lg hover:bg-white/10 transition" title="Editar carta">
                                 <i class="fa-solid fa-pen text-xs"></i>
                             </button>
-                            <button onclick="openDeleteConfirmModal(event, ${letter.id})" class="text-gray-400 hover:text-rose-400 p-1.5 rounded-lg hover:bg-white/10 transition" title="Eliminar carta">
+                            <button onclick="openDeleteConfirmModal(event, '${letter.id}')" class="text-gray-400 hover:text-rose-400 p-1.5 rounded-lg hover:bg-white/10 transition" title="Eliminar carta">
                                 <i class="fa-solid fa-trash text-xs"></i>
                             </button>
                         </div>
                     </div>
-                    <div onclick="openLetterModal(${letter.id})">
+                    <div onclick="openLetterModal('${letter.id}')">
                         <h3 class="text-lg font-bold text-white group-hover:text-rose-300 transition-colors mb-2">
                             ${letter.title}
                         </h3>
@@ -382,7 +421,7 @@
                             ${letter.content}
                         </p>
                     </div>
-                    <div onclick="openLetterModal(${letter.id})" class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-rose-400 font-medium">
+                    <div onclick="openLetterModal('${letter.id}')" class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-rose-400 font-medium">
                         <span>Haz clic para abrir 💌</span>
                         <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
                     </div>
@@ -391,17 +430,13 @@
             });
         }
 
-        // -------------------------------------------------------------
-        // 3. MODAL HANDLERS
-        // -------------------------------------------------------------
         function openLetterModal(id) {
-            const letter = letters.find(l => l.id === id);
+            const letter = window.letters.find(l => l.id === id);
             if (!letter) return;
 
             document.getElementById('modalTitle').innerText = letter.title;
             document.getElementById('modalContent').innerText = letter.content;
 
-            // Handle Image
             const imgContainer = document.getElementById('modalImageContainer');
             const imgEl = document.getElementById('modalImage');
             if (letter.image) {
@@ -411,7 +446,6 @@
                 imgContainer.classList.add('hidden');
             }
 
-            // Handle Song Box
             const musicBox = document.getElementById('modalMusicBox');
             if (letter.songName) {
                 document.getElementById('modalSongName').innerText = letter.songName;
@@ -434,16 +468,11 @@
         function closeLetterModal() {
             const modal = document.getElementById('letterModal');
             const modalCard = document.getElementById('letterModalCard');
-            
             modalCard.classList.remove('scale-100', 'opacity-100');
             modalCard.classList.add('scale-95', 'opacity-0');
-            
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 200);
+            setTimeout(() => { modal.classList.add('hidden'); }, 200);
         }
 
-        // Custom Letter Modal (Create / Edit)
         function openCustomLetterModal() {
             document.getElementById('editLetterId').value = "";
             document.getElementById('formModalTitle').innerHTML = `<i class="fa-solid fa-pen-to-square text-rose-400"></i> Crear Nueva Carta`;
@@ -458,75 +487,34 @@
 
         function editLetter(event, id) {
             event.stopPropagation();
-            const letter = letters.find(l => l.id === id);
+            const letter = window.letters.find(l => l.id === id);
             if (!letter) return;
 
             document.getElementById('editLetterId').value = letter.id;
             document.getElementById('newTitle').value = letter.title;
             document.getElementById('newContent').value = letter.content;
             document.getElementById('formModalTitle').innerHTML = `<i class="fa-solid fa-pen-to-square text-rose-400"></i> Editar Carta`;
-            
             document.getElementById('customModal').classList.remove('hidden');
         }
 
-        // Delete Modal Handler
         function openDeleteConfirmModal(event, id) {
             event.stopPropagation();
-            letterToDeleteId = id;
+            window.letterToDeleteId = id;
             document.getElementById('deleteConfirmModal').classList.remove('hidden');
         }
 
         function closeDeleteConfirmModal() {
-            letterToDeleteId = null;
+            window.letterToDeleteId = null;
             document.getElementById('deleteConfirmModal').classList.add('hidden');
         }
 
-        function confirmDeleteAction() {
-            if (letterToDeleteId !== null) {
-                letters = letters.filter(l => l.id !== letterToDeleteId);
-                localStorage.setItem('love_letters_data', JSON.stringify(letters));
-                renderEnvelopes();
-            }
-            closeDeleteConfirmModal();
-        }
+        window.addEventListener('DOMContentLoaded', () => {
+            initHeartsCanvas();
+        });
 
-        function saveCustomLetter(e) {
-            e.preventDefault();
-            const editId = document.getElementById('editLetterId').value;
-            const newTitle = document.getElementById('newTitle').value;
-            const newContent = document.getElementById('newContent').value;
-
-            if (editId) {
-                // Editar existente
-                const index = letters.findIndex(l => l.id == editId);
-                if (index !== -1) {
-                    letters[index].title = newTitle;
-                    letters[index].content = newContent;
-                }
-            } else {
-                // Crear nueva
-                const newLetter = {
-                    id: Date.now(),
-                    title: newTitle,
-                    tag: "Personalizada",
-                    icon: "fa-heart",
-                    content: newContent
-                };
-                letters.unshift(newLetter);
-            }
-
-            localStorage.setItem('love_letters_data', JSON.stringify(letters));
-            renderEnvelopes();
-            closeCustomLetterModal();
-        }
-
-        // -------------------------------------------------------------
-        // 4. HEART PARTICLES CANVAS ANIMATION
-        // -------------------------------------------------------------
         function initHeartsCanvas() {
             const canvas = document.getElementById('hearts-canvas');
             const ctx = canvas.getContext('2d');
-
             let width = canvas.width = window.innerWidth;
             let height = canvas.height = window.innerHeight;
 
@@ -539,10 +527,7 @@
             const particleCount = 25;
 
             class HeartParticle {
-                constructor() {
-                    this.reset();
-                }
-
+                constructor() { this.reset(); }
                 reset() {
                     this.x = Math.random() * width;
                     this.y = height + Math.random() * 100;
@@ -552,16 +537,11 @@
                     this.opacity = Math.random() * 0.5 + 0.2;
                     this.color = `rgba(${Math.floor(220 + Math.random() * 35)}, ${Math.floor(100 + Math.random() * 50)}, ${Math.floor(150 + Math.random() * 50)}, ${this.opacity})`;
                 }
-
                 update() {
                     this.y -= this.speedY;
                     this.x += this.speedX;
-
-                    if (this.y < -20) {
-                        this.reset();
-                    }
+                    if (this.y < -20) this.reset();
                 }
-
                 draw() {
                     ctx.save();
                     ctx.translate(this.x, this.y);
@@ -579,19 +559,13 @@
                 }
             }
 
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new HeartParticle());
-            }
+            for (let i = 0; i < particleCount; i++) particles.push(new HeartParticle());
 
             function animate() {
                 ctx.clearRect(0, 0, width, height);
-                particles.forEach(p => {
-                    p.update();
-                    p.draw();
-                });
+                particles.forEach(p => { p.update(); p.draw(); });
                 requestAnimationFrame(animate);
             }
-
             animate();
         }
     </script>
