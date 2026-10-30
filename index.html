@@ -21,9 +21,10 @@
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
+            background-color: #0b0b12;
         }
 
-        /* Foto de fondo personalizada con filtros */
+        /* Foto de fondo optimizada para fotos verticales */
         .bg-image-blur {
             position: fixed;
             top: 0;
@@ -31,21 +32,22 @@
             width: 100%;
             height: 100%;
             background-image: url('image_2.jpeg');
-            background-size: cover;
+            background-size: contain; /* Muestra la foto completa centrada */
+            background-repeat: no-repeat;
             background-position: center;
             z-index: -2;
         }
 
-        /* Capa oscura para que resalte el texto */
+        /* Capa con opacidad ligera para ver la foto con claridad sin perder legibilidad */
         .bg-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(8, 8, 14, 0.72);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
+            background: rgba(8, 8, 14, 0.45);
+            backdrop-filter: blur(1px);
+            -webkit-backdrop-filter: blur(1px);
             z-index: -1;
         }
 
@@ -63,7 +65,7 @@
 
         /* Glassmorphic Cards */
         .glass-card {
-            background: rgba(18, 18, 29, 0.65);
+            background: rgba(18, 18, 29, 0.75);
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
             border: 1px solid rgba(255, 255, 255, 0.08);
